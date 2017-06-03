@@ -149,7 +149,6 @@ def GetData(year, data_time):
             fore = last_10_games[:last_10_games.index('-')]
             back = last_10_games[last_10_games.index('-')+1:]
             last_10_games = fore + [None, None, None] + back
-            last_10_games = fore + [None, None, None] + back+ [None, None, None] + back
     last_10_game_list = []
     for i in range(0, 100, 10):
         if i > len(last_10_games)-1:
