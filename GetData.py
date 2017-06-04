@@ -261,18 +261,19 @@ if __name__ == '__main__':
         length = len(data_times)
         team_name = data_times[0][:3]
         for i in range(length):
-            if os.path.exists( path + 'data-' + year + team_name + '.json'):
+            if os.path.exists( path + 'data-' + year + data_times[i][:3] + '.json'):
                 continue
             if not year in data_times[i]:
                 continue
             if not team_name == data_times[i][:3]:
-                with open( path + 'data-'+ year + team_name + '.json', 'w') as f:
-                    json.dump(data, f)
-                data = []
-                if error_list:
-                    with open( path + 'error-'+ year + team_name + '.json', 'w') as f:
-                        json.dump(error_list, f)
-                    error_list = []
+                if not os.path.exists( path + 'data-' + year + team_name + '.json'):
+                    with open( path + 'data-' + year + team_name + '.json', 'w') as f:
+                        json.dump(data, f)
+                    data = []
+                    if error_list:
+                        with open( path + 'error-' + year + team_name + '.json', 'w') as f:
+                            json.dump(error_list, f)
+                        error_list = []
                 team_name = data_times[i][:3]
             print('%s %s %.2f%%' % (year, team_name, float(i)/length*100))
             try:
@@ -281,8 +282,8 @@ if __name__ == '__main__':
             except:
                 error_list.append(data_times[i])
         if not os.path.exists( path + 'data-' + year + team_name + '.json'):
-            with open( path + 'data-'+ year + team_name + '.json', 'w') as f:
+            with open( path + 'data-' + year + team_name + '.json', 'w') as f:
                 json.dump(data, f)
             if error_list:
-                with open(path + 'error-'+ year + team_name + '.json', 'w') as f:
+                with open(path + 'error-' + year + team_name + '.json', 'w') as f:
                     json.dump(error_list, f)
