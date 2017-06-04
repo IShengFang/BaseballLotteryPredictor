@@ -280,7 +280,7 @@ if __name__ == '__main__':
             except:
                 error_list.append(data_times[i])
         if not os.path.exists('data-' + year + team_name + '.json'):
-            with open('data/data-'+ year + team_name + '.json', 'w') as f:
+            with open('data-'+ year + team_name + '.json', 'w') as f:
                 json.dump(data, f)
             if error_list:
                 with open('error-'+ year + team_name + '.json', 'w') as f:
