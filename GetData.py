@@ -260,7 +260,7 @@ if __name__ == '__main__':
         length = len(data_times)
         team_name = data_times[0][:3]
         for i in range(length):
-            if os.path.exists('data/data-' + year + team_name + '.json'):
+            if os.path.exists('data-' + year + team_name + '.json'):
                 continue
             if not year in data_times[i]:
                 continue
