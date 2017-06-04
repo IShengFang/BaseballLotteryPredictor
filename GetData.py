@@ -244,6 +244,7 @@ def GetData(year, data_time):
 
 if __name__ == '__main__':
     years = ['2016', '2015']
+    path = 'data/'
     for year in years:
         soup = BeautifulSoup(urlopen('http://www.baseball-reference.com/previews/' + year + '/'))
         paragraphs = soup.find_all('a')
@@ -260,16 +261,16 @@ if __name__ == '__main__':
         length = len(data_times)
         team_name = data_times[0][:3]
         for i in range(length):
-            if os.path.exists('data-' + year + team_name + '.json'):
+            if os.path.exists( path + 'data-' + year + team_name + '.json'):
                 continue
             if not year in data_times[i]:
                 continue
             if not team_name == data_times[i][:3]:
-                with open('data-'+ year + team_name + '.json', 'w') as f:
+                with open( path + 'data-'+ year + team_name + '.json', 'w') as f:
                     json.dump(data, f)
                 data = []
                 if error_list:
-                    with open('error-'+ year + team_name + '.json', 'w') as f:
+                    with open( path + 'error-'+ year + team_name + '.json', 'w') as f:
                         json.dump(error_list, f)
                     error_list = []
                 team_name = data_times[i][:3]
@@ -279,9 +280,9 @@ if __name__ == '__main__':
                 data.append([data_times[i], road, home, head_to_head])
             except:
                 error_list.append(data_times[i])
-        if not os.path.exists('data-' + year + team_name + '.json'):
-            with open('data-'+ year + team_name + '.json', 'w') as f:
+        if not os.path.exists( path + 'data-' + year + team_name + '.json'):
+            with open( path + 'data-'+ year + team_name + '.json', 'w') as f:
                 json.dump(data, f)
             if error_list:
-                with open('error-'+ year + team_name + '.json', 'w') as f:
+                with open(path + 'error-'+ year + team_name + '.json', 'w') as f:
                     json.dump(error_list, f)
