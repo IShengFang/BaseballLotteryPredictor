@@ -130,7 +130,7 @@ def Arrayize(a1):
 
     for temp in last_10_game:
         if None in temp:
-            np.zeros(39*2)
+            road_data = np.concatenate((road_data, np.zeros(38*2)))
         else:
             temp_encode = []
 
@@ -149,7 +149,7 @@ def Arrayize(a1):
 
             t_e = team_encode[team_dic[team_dic_o_inv[temp[2]]]]
             temp_encode = np.array(temp_encode)
-            road_data = np.concatenate((road_data, np.ones(39), temp_encode, t_e))
+            road_data = np.concatenate((road_data, np.ones(38), temp_encode, t_e))
             
     return road_data
 
@@ -187,7 +187,8 @@ for filename in os.listdir(path):
             home_data = Arrayize(i[2])
             ten_game = TenGameArray(i[3])
             preview = np.concatenate((road_data,home_data,ten_game))
-            
+            if preview.shape[0] != 2238:
+                continue
             y_data.append(Score.WinOrLoss(Score.FindScore(i[0]) )) 
             print(i[0]+'y done')
             x_data.append(preview.tolist())
