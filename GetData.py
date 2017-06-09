@@ -252,7 +252,7 @@ def get_2(year, data_time):
     x = data[0]
     x.columns = range(x.shape[1])
     x = x[x[0].notnull()]
-    x = x.loc[list(map(lambda x: (len(x) > 15) | (',' in x), x[0]))]
+    x = x.loc[list(map(lambda x: (len(x) > 35) | (',' in x), x[0]))]
     x = x.loc[:, 0]
     x.index = range(x.shape[0])
     
