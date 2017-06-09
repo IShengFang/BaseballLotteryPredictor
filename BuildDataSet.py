@@ -10,7 +10,7 @@ import Score
 import os
 import numpy as np
 
-path = 'data/'
+path = 'data2/'
 
 #Build Dictionary
 
@@ -201,11 +201,11 @@ x_data = np.array(x_data)
 y_data = np.array(y_data)
 
 import pickle
-output = open('data.pkl','wb')
+output = open('data2.pkl','wb')
 data = (x_data, y_data)
 pickle.dump(data, output)
 print("data done")
 
-output = open('error.pkl','wb')
+output = open('error2.pkl','wb')
 pickle.dump(error, output)
 print("data done")
